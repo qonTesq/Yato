@@ -1,78 +1,141 @@
----
-
-*This repository is now a public archive. The bot and its build may no longer function as intended due to outdated dependencies, changes in the Discord API, or other factors. While the codebase remains available for reference, it may require significant updates to work with current systems. For active use, consider forking and updating the code or exploring alternative bots!*
-
 # Yato Discord Bot
 
-Yato is a versatile Discord bot. With approximately 50 commands across various categories, Yato enhances your Discord server experience by providing tools for moderation, fun interactions, logging, and more. Whether you're managing a community or just having fun with friends, Yato has you covered.
+> ⚠️ Archived: This repository is now a public archive. The bot code is preserved for educational/reference purposes and may no longer function without updates (Discord API changes, library deprecations, dependency vulnerabilities, etc.). Use or deploy at your own discretion.
 
-## Features
+Yato is a multifunctional Discord bot providing moderation, social, utility, media, and community engagement capabilities through modern slash commands (and some legacy message-based commands). It was built as a student / learning project and showcases structured command handling, external API integrations (anime/manga data, images, game server stats), database persistence, and interaction-based UX.
 
-Yato packs a punch with a wide range of functionalities designed to make server management and engagement effortless. Key highlights include:
+---
 
-- **Moderation Tools**: Keep your server safe with commands for kicking, banning, muting, and more.
-- **Welcome & Logging**: Customizable welcome messages (including images) and detailed server activity logs.
-- **Fun & Social Commands**: Memes, hugs, kisses and roleplay actions to lighten the mood.
-- **Music & Voice**: Play, queue, and control music tracks directly in voice channels.
-- **Utility Commands**: Role management, announcements.
-- **Customization**: Slash commands for seamless integration with Discord's modern UI, supporting mobile-friendly interactions.
+## ✨ Feature Highlights
 
-For a full list of commands, check out the [official command documentation](https://yatobot.vercel.app/commands/).
+- Moderation: Kick, ban, mute, purge, role management.
+- Social & Roleplay: Reactions (hug, kiss, etc.), memes, playful interactions.
+- Anime & Manga: AniList & MyAnimeList (via Jikan) lookups.
+- Media / Images: Dynamic Canvas-based welcome cards or generated graphics.
+- Music / Voice (legacy): Basic queue & playback (Discord.js v12 era approach, requires rewrite for current API & intents).
+- Logging: Joins/leaves, moderation events (if configured).
+- Utility: Announcements, server stats, time utilities.
+- Slash Commands: Implemented via `gcommands` for structured interactions.
+- Database: MongoDB (Mongoose) for persistence (e.g., guild config, user data, tokens).
+- Game Server Stats: Via `gamedig` (e.g., Minecraft, CS servers).
+- Configurable environment via `.env`.
 
-**Note**: Commands are primarily slash-based (`/` prefix), but some legacy message-based commands may be available. The bot requires appropriate permissions (e.g., Manage Roles, Send Messages) to function fully.
+---
 
-## Installation & Setup
+## 🧱 Tech Stack
 
-Since Yato is open-source, you can self-host it for full control over your instance. Here's a quick guide:
+| Layer           | Library / Service                              | Notes                                                  |
+| --------------- | ---------------------------------------------- | ------------------------------------------------------ |
+| Core Bot        | discord.js `^12.5.3`                           | Outdated; upgrade required for current API (v14+).     |
+| Slash Framework | gcommands `^5.2.4`                             | May no longer be maintained; consider native builders. |
+| Database        | Mongoose + MongoDB                             | Optional (only if persistence features used).          |
+| External APIs   | AniList (`anilist-node`), Jikan (`jikan-node`) | Anime & manga lookups.                                 |
+| Canvas / Images | `canvas`                                       | For welcome images or generated assets.                |
+| Utilities       | `moment`, `ms`, `diff`, `colors`               | Formatting & developer helpers.                        |
+| Game Stats      | `gamedig`                                      | Query game server info.                                |
+| Environment     | `dotenv`                                       | Load `.env` config.                                    |
 
-### Prerequisites
-- Node.js (v16+ recommended)
-- A Discord bot application (create one at the [Discord Developer Portal](https://discord.com/developers/applications))
-- Git installed
+---
 
-### Steps
-1. **Clone the Repository**:
-   ```
-   git clone https://github.com/qonTesq/Yato.git
-   cd Yato
-   ```
+## ⚙️ Requirements
 
-2. **Install Dependencies**:
-   ```
-   npm install
-   ```
-   This installs `gcommands` and other required packages like `discord.js`.
+- Node.js: v14–16 was the target at the time (discord.js v12).  
+  For modern use: Upgrade to Node 18+ and migrate to discord.js v14.
+- npm or yarn
+- (Optional) MongoDB instance
+- Discord Application (Bot) w/ proper intents:
+  - If updating: Enable Privileged Gateway Intents for Member / Presence if needed.
 
-3. **Configure Environment**:
-   - Create a `.env` file in the root directory.
-   - Add your bot token and other configs:
-     ```
-     TOKEN=your_discord_bot_token_here
-     CLIENT_ID=your_bot_client_id
-     GUILD_ID=your_server_id_for_testing (optional)
-     ```
-   - For database (if used, e.g., MongoDB): Add `MONGODB_URI=your_mongo_connection_string`.
+---
 
-4. **Build & Run**:
-   ```
-   npm run build  # If using TypeScript; skip if JS-only
-   node index.js  # Or npm start
-   ```
+## 📦 Installation
 
-5. **Invite the Bot**:
-   - Use the OAuth2 URL generator in the Developer Portal to invite your bot to servers with necessary scopes (e.g., `bot`, `applications.commands`).
+```bash
+git clone https://github.com/qonTesq/Yato.git
+cd Yato
+npm install
+```
 
-6. **Deploy Commands**:
-   - The bot uses gcommands for automatic slash command registration. Run once to sync:
-     ```
-     node deploy-commands.js  # Assumes a deploy script exists; create if needed
-     ```
+---
 
-### Hosting Options
-- **Local**: For testing.
-- **VPS/Cloud**: Heroku, Vercel for 24/7 uptime.
-- **Sharding**: For large-scale use, configure sharding in the code.
+## 🔐 Environment Variables
 
-## Notes
+Create a `.env` file in project root:
 
-- This is a student project for educational purposes.
+```dotenv
+TOKEN=your_discord_bot_token
+CLIENT_ID=your_bot_application_client_id
+GUILD_ID=optional_test_guild_id   # For quicker command registration (development)
+MONGODB_URI=your_mongo_connection_string_optional
+```
+
+Additional (if you extend):
+
+```dotenv
+LOG_CHANNEL_ID=
+WELCOME_CHANNEL_ID=
+```
+
+---
+
+## 🚀 Running the Bot
+
+Development (with auto-restart if you add nodemon):
+
+```bash
+npm run dev
+```
+
+Basic start (if entry is `src/index.js`):
+
+```bash
+node src/index.js
+```
+
+There is no build step in the current `package.json` (no TypeScript config present). If you migrate to TypeScript, add:
+
+```json
+"scripts": {
+  "dev": "nodemon .",
+  "build": "tsc",
+  "start": "node dist/index.js"
+}
+```
+
+---
+
+## 🗂️ Project Structure (Simplified)
+
+(This may differ from actual layout, adjust as needed.)
+
+```
+Yato/
+├─ src/
+│  ├─ index.js                # Bot startup
+│  ├─ commands/               # Slash / legacy commands
+│  ├─ events/                 # Event handlers (guildMemberAdd, message, interactionCreate)
+│  ├─ utils/                  # Helpers (formatting, API wrappers)
+│  ├─ services/               # External integrations (anime, game stats)
+│  ├─ database/               # Mongoose models & connection
+│  └─ config/                 # Constants / settings
+├─ package.json
+├─ .env.example
+└─ README.md
+```
+
+---
+
+## 🔒 Security Considerations
+
+- Never commit `.env`.
+- Restrict elevated commands to admin roles or explicit role IDs.
+- Validate external API inputs to avoid injection or overflow.
+- Monitor rate limits (Discord & 3rd-party APIs).
+- Sanitize user-generated text before rendering on Canvas.
+
+---
+
+## 📚 Documentation
+
+Original (if still live):  
+[Command Documentation](https://yatobot.vercel.app/commands/)
