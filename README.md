@@ -2,8 +2,6 @@
 
 *This repository is now a public archive. The bot and its build may no longer function as intended due to outdated dependencies, changes in the Discord API, or other factors. While the codebase remains available for reference, it may require significant updates to work with current systems. For active use, consider forking and updating the code or exploring alternative bots!*
 
----
-
 # Yato Discord Bot
 
 Yato is a versatile Discord bot. With approximately 50 commands across various categories, Yato enhances your Discord server experience by providing tools for moderation, fun interactions, logging, and more. Whether you're managing a community or just having fun with friends, Yato has you covered.
