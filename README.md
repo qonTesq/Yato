@@ -6,7 +6,7 @@ Yato is a multifunctional Discord bot providing moderation, social, utility, med
 
 ---
 
-## ✨ Feature Highlights
+## Feature Highlights
 
 - Moderation: Kick, ban, mute, purge, role management.
 - Social & Roleplay: Reactions (hug, kiss, etc.), memes, playful interactions.
@@ -22,7 +22,7 @@ Yato is a multifunctional Discord bot providing moderation, social, utility, med
 
 ---
 
-## 🧱 Tech Stack
+## Tech Stack
 
 | Layer           | Library / Service                              | Notes                                                  |
 | --------------- | ---------------------------------------------- | ------------------------------------------------------ |
@@ -37,7 +37,7 @@ Yato is a multifunctional Discord bot providing moderation, social, utility, med
 
 ---
 
-## ⚙️ Requirements
+## Requirements
 
 - Node.js: v14–16 was the target at the time (discord.js v12).  
   For modern use: Upgrade to Node 18+ and migrate to discord.js v14.
@@ -48,7 +48,7 @@ Yato is a multifunctional Discord bot providing moderation, social, utility, med
 
 ---
 
-## 📦 Installation
+## Installation
 
 ```bash
 git clone https://github.com/qonTesq/Yato.git
@@ -58,7 +58,7 @@ npm install
 
 ---
 
-## 🔐 Environment Variables
+## Environment Variables
 
 Create a `.env` file in project root:
 
@@ -78,7 +78,7 @@ WELCOME_CHANNEL_ID=
 
 ---
 
-## 🚀 Running the Bot
+## Running the Bot
 
 Development (with auto-restart if you add nodemon):
 
@@ -104,7 +104,7 @@ There is no build step in the current `package.json` (no TypeScript config prese
 
 ---
 
-## 🗂️ Project Structure (Simplified)
+## Project Structure (Simplified)
 
 (This may differ from actual layout, adjust as needed.)
 
@@ -125,7 +125,7 @@ Yato/
 
 ---
 
-## 🔒 Security Considerations
+## Security Considerations
 
 - Never commit `.env`.
 - Restrict elevated commands to admin roles or explicit role IDs.
@@ -135,7 +135,7 @@ Yato/
 
 ---
 
-## 📚 Documentation
+## Documentation
 
 Original (if still live):  
 [Command Documentation](https://yatobot.vercel.app/commands/)
