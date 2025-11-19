@@ -4,8 +4,6 @@
 
 Yato is a multifunctional Discord bot providing moderation, social, utility, media, and community engagement capabilities through modern slash commands (and some legacy message-based commands). It was built as a student / learning project and showcases structured command handling, external API integrations (anime/manga data, images, game server stats), database persistence, and interaction-based UX.
 
----
-
 ## Feature Highlights
 
 - Moderation: Kick, ban, mute, purge, role management.
@@ -20,8 +18,6 @@ Yato is a multifunctional Discord bot providing moderation, social, utility, med
 - Game Server Stats: Via `gamedig` (e.g., Minecraft, CS servers).
 - Configurable environment via `.env`.
 
----
-
 ## Tech Stack
 
 | Layer           | Library / Service                              | Notes                                                  |
@@ -35,8 +31,6 @@ Yato is a multifunctional Discord bot providing moderation, social, utility, med
 | Game Stats      | `gamedig`                                      | Query game server info.                                |
 | Environment     | `dotenv`                                       | Load `.env` config.                                    |
 
----
-
 ## Requirements
 
 - Node.js: v14–16 was the target at the time (discord.js v12).  
@@ -46,8 +40,6 @@ Yato is a multifunctional Discord bot providing moderation, social, utility, med
 - Discord Application (Bot) w/ proper intents:
   - If updating: Enable Privileged Gateway Intents for Member / Presence if needed.
 
----
-
 ## Installation
 
 ```bash
@@ -55,8 +47,6 @@ git clone https://github.com/qonTesq/Yato.git
 cd Yato
 npm install
 ```
-
----
 
 ## Environment Variables
 
@@ -75,8 +65,6 @@ Additional (if you extend):
 LOG_CHANNEL_ID=
 WELCOME_CHANNEL_ID=
 ```
-
----
 
 ## Running the Bot
 
@@ -102,8 +90,6 @@ There is no build step in the current `package.json` (no TypeScript config prese
 }
 ```
 
----
-
 ## Project Structure (Simplified)
 
 (This may differ from actual layout, adjust as needed.)
@@ -123,8 +109,6 @@ Yato/
 └─ README.md
 ```
 
----
-
 ## Security Considerations
 
 - Never commit `.env`.
@@ -132,8 +116,6 @@ Yato/
 - Validate external API inputs to avoid injection or overflow.
 - Monitor rate limits (Discord & 3rd-party APIs).
 - Sanitize user-generated text before rendering on Canvas.
-
----
 
 ## Documentation
 
